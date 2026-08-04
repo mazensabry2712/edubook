@@ -1,4 +1,4 @@
-<laravel-boost-guidelines>
+<!-- <laravel-boost-guidelines>
 === foundation rules ===
 
 # Laravel Boost Guidelines
@@ -159,4 +159,4 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - Run tests: `php artisan test --compact` or filter: `php artisan test --compact --filter=testName`.
 - Do NOT delete tests without approval.
 
-</laravel-boost-guidelines>
+</laravel-boost-guidelines> -->
