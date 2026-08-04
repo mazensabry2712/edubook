@@ -13,6 +13,11 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard.layouts.master');
-})->name('dashboard');
+
+
+
+
+include __DIR__.'/dashboard.php';
+include __DIR__.'/website.php';
+
+
