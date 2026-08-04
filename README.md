@@ -1,3 +1,18 @@
+
+# EduBook – Course Booking & Management System
+
+## Overview
+
+**EduBook** is a web-based application designed to simplify the management and booking of educational courses. The system provides an easy-to-use platform for administrators, instructors, and students to manage courses, enrollments, schedules, and user accounts.
+
+The main goal of EduBook is to automate the course registration process, reduce manual work, and improve communication between students and instructors.
+
+## Objectives
+
+- Automate the course registration and booking process.
+- Reduce manual administrative tasks
+
+
 <!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
