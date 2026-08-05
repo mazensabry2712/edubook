@@ -11,12 +11,13 @@
 
         @include('dashboard.layouts.sidebar')
 
-
         <div class="admin-main">
 
             @include('dashboard.layouts.navbar')
 
-            @include('dashboard.layouts.main')
+            {{-- @include('dashboard.layouts.main') --}}
+
+            @yield('content')
 
             @include('dashboard.layouts.footer')
 
