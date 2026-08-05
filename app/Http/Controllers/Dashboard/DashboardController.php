@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboaed;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,5 +12,5 @@ class DashboardController extends Controller
         return view('dashboard.layouts.master');
     }
 
- 
+
 }
