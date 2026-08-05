@@ -1,36 +1,74 @@
-  <!-- SIDEBAR -->
-  <aside id="sidebar" class="sidebar">
-      <div class="logo-area">
-          <a href="index.html" class="d-inline-flex"><img src="{{ asset('Admin/src/assets/images/logo-icon.svg') }}"
-                  alt="" width="24">
-              <span class="logo-text ms-2"> <img src="{{ asset('Admin/src/assets/images/logo.svg') }}"
-                      alt=""></span>
-          </a>
-      </div>
-      <ul class="nav flex-column">
-          <li class="px-4 py-2"><small class="nav-text">Main</small></li>
-          <li><a class="nav-link active" href="index.html"><i class="ti ti-home"></i><span
-                      class="nav-text">Dashboard</span></a></li>
-          <li><a class="nav-link" href="inventory.html"><i class="ti ti-box-seam"></i><span
-                      class="nav-text">Inventory</span></a></li>
-          <li><a class="nav-link" href="create-product.html"><i class="ti ti-plus"></i><span class="nav-text">Add
-                      Product</span></a></li>
-          <li><a class="nav-link" href="reports.html"><i class="ti ti-receipt"></i><span
-                      class="nav-text">Reports</span></a>
-          </li>
-          <li><a class="nav-link" href="404-error.html"><i class="ti ti-alert-circle"></i><span class="nav-text">404
-                      Error</span></a>
-          </li>
-          <li><a class="nav-link" href="docs.html"><i class="ti ti-file-text"></i><span class="nav-text">Docs</span></a>
-          </li>
+ <aside class="admin-sidebar" id="adminSidebar" aria-label="Main navigation">
+     <div class="sidebar-header">
+         <a class="brand-mark" href="index.html" aria-label="adminHMD dashboard">
+             <span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
+             <span class="brand-copy">
+                 <span class="brand-title">adminHMD</span>
+                 <span class="brand-subtitle">Admin Template</span>
+             </span>
+         </a>
+     </div>
 
+     <nav class="sidebar-nav">
+         <a class="nav-link active" href="index.html" aria-current="page">
+             <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
+             <span class="nav-text">Dashboard</span>
+         </a>
+         <a class="nav-link" href="users.html">
+             <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+             <span class="nav-text">Users</span>
+         </a>
+         <a class="nav-link" href="add-user.html">
+             <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
+             <span class="nav-text">Add User</span>
+         </a>
+         <a class="nav-link" href="profile.html">
+             <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
+             <span class="nav-text">Profile</span>
+         </a>
+         <a class="nav-link" href="charts.html">
+             <span class="nav-icon"><i class="bi bi-bar-chart-line" aria-hidden="true"></i></span>
+             <span class="nav-text">Charts</span>
+         </a>
+         <a class="nav-link" href="tables.html">
+             <span class="nav-icon"><i class="bi bi-table" aria-hidden="true"></i></span>
+             <span class="nav-text">Tables</span>
+         </a>
+         <a class="nav-link" href="forms.html">
+             <span class="nav-icon"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i></span>
+             <span class="nav-text">Forms</span>
+         </a>
+         <a class="nav-link" href="components.html">
+             <span class="nav-icon"><i class="bi bi-grid-3x3-gap" aria-hidden="true"></i></span>
+             <span class="nav-text">Components</span>
+         </a>
+         <a class="nav-link" href="alerts.html">
+             <span class="nav-icon"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i></span>
+             <span class="nav-text">Alerts</span>
+         </a>
+         <a class="nav-link" href="modals.html">
+             <span class="nav-icon"><i class="bi bi-window-stack" aria-hidden="true"></i></span>
+             <span class="nav-text">Modals</span>
+         </a>
+         <a class="nav-link" href="settings.html">
+             <span class="nav-icon"><i class="bi bi-gear" aria-hidden="true"></i></span>
+             <span class="nav-text">Settings</span>
+         </a>
+         <a class="nav-link" href="blank.html">
+             <span class="nav-icon"><i class="bi bi-file-earmark" aria-hidden="true"></i></span>
+             <span class="nav-text">Blank Page</span>
+         </a>
+     </nav>
 
-          <li class="px-4 pt-4 pb-2"><small class="nav-text">Account</small></li>
-          <li><a class="nav-link" href="signin.html"><i class="ti ti-logout"></i><span class="nav-text">Log
-                      in</span></a>
-          </li>
-          <li><a class="nav-link" href="signup.html"><i class="ti ti-user-plus"></i><span class="nav-text">Sign
-                      up</span></a></li>
-      </ul>
+     <div class="sidebar-user">
+         <img class="avatar-img avatar-md sidebar-user-avatar" src="../assets/images/avatar/avatar.jpg"
+             alt="Admin Hasan">
+         <strong>Admin Hasan</strong>
+         <small>Active Workspace</small>
+     </div>
 
-  </aside>
+     <div class="sidebar-footer">
+         <span class="status-dot"></span>
+         <span class="sidebar-footer-text">System running smoothly</span>
+     </div>
+ </aside>

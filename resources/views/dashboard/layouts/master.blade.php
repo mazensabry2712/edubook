@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 @include('dashboard.layouts.header')
 
+
 <body>
-    <div id="overlay" class="overlay"></div>
-    <!-- TOPBAR -->
-  @include('dashboard.layouts.navbar')
+    <div class="admin-shell">
+        <div class="sidebar-backdrop" data-sidebar-close></div>
+
+        @include('dashboard.layouts.sidebar')
 
 
-  @include('dashboard.layouts.sidebar')
+        <div class="admin-main">
+
+            @include('dashboard.layouts.navbar')
+
+            @include('dashboard.layouts.main')
+
+            @include('dashboard.layouts.footer')
 
 
-  @include('dashboard.layouts.main')
 
-    <!-- Bootstrap JS -->
-    <script src="{{ asset('Admin/src/assets/js/main.js') }}" type="module"></script>
+        </div>
+    </div>
 
-
-
+    <script src="{{ asset('Admin/assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('Admin/assets/js/main.js') }}"></script>
 </body>
 
 </html>
