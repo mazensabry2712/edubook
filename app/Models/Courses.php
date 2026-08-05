@@ -12,7 +12,6 @@ class Courses extends Model
         'category_id',
         'instructor',
         'price',
-        'image',
     ];
     protected $table = 'courses';
 

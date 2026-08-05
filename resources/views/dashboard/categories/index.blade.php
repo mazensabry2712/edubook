@@ -10,8 +10,15 @@
                         <p class="eyebrow mb-1">Categories</p>
                         <h1 class="h3 mb-1">Categories List</h1>
                         <p class="text-muted mb-0">Use responsive, searchable tables for operational records.</p>
+
+
                     </div>
+
                 </div>
+                <a href="{{ route('categories.create') }}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>
+                    Add Category
+                </a>
             </div>
             <section class="panel">
                 <div class="panel-header">
@@ -33,10 +40,7 @@
                                     <th class="text-first">Action</th>
                                     <th>Name</th>
                                     <th>Description</th>
-                                    <th>Instructor</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                    <th>Category</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,22 +49,42 @@
                                     <tr>
                                         {{-- <td>{{ $i + 1 }}</td> --}}
                                         <td>{{ $i + 1 }}</td>
-                                        <td class="text-first"><button class="btn btn-light btn-sm"
-                                                type="button">View</button>
+                                        <td class="text-first">
+                                            <div class="d-flex gap-2">
+
+                                                {{-- View --}}
+                                                <a href="{{ route('categories.show', $category->id) }}"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+
+                                                {{-- Edit --}}
+                                                <a href="{{ route('categories.edit', $category->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+
+                                                {{-- Delete --}}
+                                                <form action="{{ route('categories.destroy', $category->id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this category?')">
+
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+
+                                            </div>
                                         </td>
 
                                         <td class="fw-semibold">{{ $category->name }}</td>
 
                                         <td class="fw-semibold">{{ $category->description }}</td>
-                                        <td class="fw-semibold">{{ $category->instructor }}</td>
-                                        <td class="fw-semibold">${{ $category->price }}</td>
-                                        <td class="fw-semibold">
-                                            @if ($category->status == 1)
-                                                <span class="badge text-bg-success">Active</span>
-                                            @else
-                                                <span class="badge text-bg-danger">Inactive</span>
-                                            @endif
-                                        </td>
+
+
                                     </tr>
                                     {{-- <td>
                                         <div class="table-media"><img class="product-thumb"

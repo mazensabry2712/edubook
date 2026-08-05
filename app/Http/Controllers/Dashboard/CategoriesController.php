@@ -30,7 +30,14 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        Categories::create($request->all());
+
+        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
     /**
@@ -38,7 +45,8 @@ class CategoriesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Categories::findOrFail($id);
+        return view('dashboard.categories.show', compact('category'));
     }
 
     /**
@@ -46,7 +54,8 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Categories::findOrFail($id);
+        return view('dashboard.categories.edit', compact('category'));
     }
 
     /**
@@ -54,7 +63,15 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $category = Categories::findOrFail($id);
+        $category->update($request->all());
+
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
     /**
@@ -62,6 +79,9 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Categories::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
 }

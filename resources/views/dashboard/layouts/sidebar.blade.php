@@ -23,10 +23,14 @@
             <span class="nav-text"> Dashboard</span>
         </a>
 
+
+
         <a class="nav-link" href="#coursesSubmenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="coursesSubmenu">
             <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
             <span class="nav-text">Courses</span>
         </a>
+
+
         <div class="collapse" id="coursesSubmenu">
             <a class="nav-link" href="{{ route('categories.index') }}">
                 <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
@@ -38,12 +42,17 @@
             </a>
         </div>
 
-        <a class="nav-link" href="add-user.html">
+
+
+
+
+
+        <a class="nav-link" href="{{ route('students.index') }}">
             <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
             <span class="nav-text">Students</span>
         </a>
 
-        <a class="nav-link" href="profile.html">
+        <a class="nav-link" href="{{ route('bookings.index') }}">
             <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
             <span class="nav-text">Booking</span>
         </a>
