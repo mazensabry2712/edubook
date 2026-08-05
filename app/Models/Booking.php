@@ -10,7 +10,6 @@ class Booking extends Model
     protected $fillable = [
         'student_id',
         'course_id',
-        'booking_date',
         'booking_time',
     ];
 
@@ -23,5 +22,5 @@ class Booking extends Model
     {
         return $this->belongsTo(Courses::class, 'course_id');
     }
-    
+
 }

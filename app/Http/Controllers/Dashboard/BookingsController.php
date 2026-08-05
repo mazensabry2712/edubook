@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\Courses;
+use App\Models\Students;
 use Illuminate\Http\Request;
 
 class BookingsController extends Controller
@@ -13,6 +16,8 @@ class BookingsController extends Controller
     public function index()
     {
         //
+        $bookings = Booking::with(['student', 'course'])->get();
+        return view('dashboard.boockings.index', compact('bookings'));
     }
 
     /**
@@ -20,7 +25,10 @@ class BookingsController extends Controller
      */
     public function create()
     {
-        //
+        $students = Students::all();
+        $courses = Courses::all();
+
+        return view('dashboard.boockings.create', compact('students', 'courses'));
     }
 
     /**
@@ -28,7 +36,13 @@ class BookingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'course_id' => 'required|exists:courses,id',
+            'booking_time' => 'nullable|date_format:H:i',
+        ]);
+        Booking::create($validatedData);
+        return redirect()->route('bookings.index')->with('success', 'Booking created successfully.');
     }
 
     /**
@@ -37,6 +51,8 @@ class BookingsController extends Controller
     public function show(string $id)
     {
         //
+        $booking = Booking::findOrFail($id);
+        return view('dashboard.boockings.show', compact('booking'));
     }
 
     /**
@@ -44,7 +60,12 @@ class BookingsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+
+        $students = Students::all();
+        $courses = Courses::all();
+
+        return view('dashboard.boockings.edit', compact('booking', 'students', 'courses'));
     }
 
     /**
@@ -52,7 +73,14 @@ class BookingsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'course_id' => 'required|exists:courses,id',
+            'booking_time' => 'nullable|date_format:H:i',
+        ]);
+        $booking = Booking::findOrFail($id);
+        $booking->update($validatedData);
+        return redirect()->route('bookings.index')->with('success', 'Booking updated successfully.');
     }
 
     /**
@@ -60,6 +88,8 @@ class BookingsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+        return redirect()->route('bookings.index')->with('success', 'Booking deleted successfully.');
     }
 }

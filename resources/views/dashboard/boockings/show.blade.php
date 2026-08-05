@@ -1,7 +1,6 @@
-```blade
 @extends('dashboard.layouts.master')
 
-@section('title', 'Course Details')
+@section('title', 'Booking Details')
 
 @section('content')
 
@@ -13,56 +12,25 @@
             <div class="page-heading d-flex justify-content-between align-items-center">
 
 
-                <div class="page-heading-copy">
-
-                    <span class="page-icon">
-                        <i class="bi bi-book"></i>
-                    </span>
-
-
-                    <div>
-
-                        <p class="eyebrow mb-1">
-                            Courses
-                        </p>
-
-                        <h1 class="h3 mb-1">
-                            Course Details
-                        </h1>
-
-                        <p class="text-muted mb-0">
-                            View complete course information.
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-
-
-
                 <div>
 
-                    <a href="{{ route('courses.index') }}" class="btn btn-light">
+                    <p class="eyebrow">
+                        Bookings
+                    </p>
 
-                        <i class="bi bi-arrow-left"></i>
-
-                        Back
-
-                    </a>
-
-
-                    <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-warning">
-
-                        <i class="bi bi-pencil-square"></i>
-
-                        Edit
-
-                    </a>
+                    <h1 class="h3">
+                        Booking Details
+                    </h1>
 
                 </div>
 
+
+
+                <a href="{{ route('bookings.index') }}" class="btn btn-light">
+
+                    Back
+
+                </a>
 
 
             </div>
@@ -83,19 +51,15 @@
 
                         <div class="col-md-6">
 
-
                             <h6 class="text-muted">
-                                Course Title
+                                Student
                             </h6>
 
-
                             <p class="fw-semibold">
-                                {{ $course->title }}
+                                {{ $booking->student?->name ?? '-' }}
                             </p>
 
-
                         </div>
-
 
 
 
@@ -103,19 +67,15 @@
 
                         <div class="col-md-6">
 
-
                             <h6 class="text-muted">
-                                Instructor
+                                Course
                             </h6>
 
-
                             <p class="fw-semibold">
-                                {{ $course->instructor }}
+                                {{ $booking->course?->title ?? '-' }}
                             </p>
 
-
                         </div>
-
 
 
 
@@ -123,76 +83,47 @@
 
                         <div class="col-md-6">
 
-
                             <h6 class="text-muted">
-                                Category
+                                Booking Time
                             </h6>
 
-
-                            <p class="fw-semibold">
-                                {{ $course->category?->name ?? '-' }}
-                            </p>
-
-
-                        </div>
-
-
-
-
-
-
-                        <div class="col-md-6">
-
-
-                            <h6 class="text-muted">
-                                Price
-                            </h6>
-
-
-                            <p class="fw-semibold">
-                                ${{ number_format($course->price, 2) }}
-                            </p>
-
-
-                        </div>
-
-
-
-
-
-
-                        <div class="col-md-6">
-
-
-                            <h6 class="text-muted">
-                                Status
-                            </h6>
-
-
-
-                            @if ($course->status)
-                                <span class="badge bg-success">
-                                    Active
-                                </span>
-                            @else
-                                <span class="badge bg-danger">
-                                    Inactive
-                                </span>
-                            @endif
-                        </div>
-                        <div class="col-12">
-                            <h6 class="text-muted">
-                                Description
-                            </h6>
                             <p>
-                                {{ $course->description }}
+                                {{ $booking->booking_time ?? '-' }}
                             </p>
+
                         </div>
+
+
+
+
+
+                        <div class="col-md-6">
+
+                            <h6 class="text-muted">
+                                Created At
+                            </h6>
+
+                            <p>
+                                {{ $booking->created_at->format('Y-m-d') }}
+                            </p>
+
+                        </div>
+
+
+
                     </div>
+
+
                 </div>
+
+
             </section>
+
+
         </div>
 
+
     </main>
+
+
 @endsection
-```

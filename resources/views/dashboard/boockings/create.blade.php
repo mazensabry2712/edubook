@@ -1,247 +1,182 @@
-```blade
 @extends('dashboard.layouts.master')
 
-@section('title', 'Add New Course')
+@section('title', 'Add Booking')
 
 @section('content')
 
-<main class="dashboard-content">
+    <main class="dashboard-content">
 
-    <div class="container-fluid px-3 px-lg-4 py-4">
-
-
-        <div class="page-heading d-flex justify-content-between align-items-center">
-
-            <div class="page-heading-copy">
-
-                <span class="page-icon">
-                    <i class="bi bi-plus-circle"></i>
-                </span>
-
-                <div>
-                    <p class="eyebrow mb-1">Courses</p>
-                    <h1 class="h3 mb-1">Add New Course</h1>
-                    <p class="text-muted mb-0">
-                        Fill in the details below to create a new course.
-                    </p>
-                </div>
-
-            </div>
+        <div class="container-fluid px-3 px-lg-4 py-4">
 
 
-            <div>
-                <a href="{{ route('courses.index') }}" class="btn btn-light">
-                    <i class="bi bi-arrow-left"></i>
-                    Back to Courses
-                </a>
-            </div>
-
-        </div>
+            <div
+                class="page-heading d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
 
 
+                <div class="page-heading-copy d-flex align-items-center">
 
-        @if ($errors->any())
-
-            <div class="alert alert-danger mt-3">
-
-                <ul class="mb-0 ps-3">
-
-                    @foreach ($errors->all() as $error)
-
-                        <li>{{ $error }}</li>
-
-                    @endforeach
-
-                </ul>
-
-            </div>
-
-        @endif
-
-
-
-        <section class="panel mt-4">
-
-
-            <div class="panel-header">
-
-                <h2 class="h5 mb-1 section-title">
-
-                    <i class="bi bi-journal-plus"></i>
-
-                    <span>
-                        Course Details
+                    <span class="page-icon">
+                        <i class="bi bi-calendar-plus"></i>
                     </span>
 
-                </h2>
+
+                    <div class="ms-3">
+
+                        <p class="eyebrow mb-1">
+                            Bookings
+                        </p>
+
+                        <h1 class="h3 mb-1">
+                            Add New Booking
+                        </h1>
+
+                        <p class="text-muted mb-0">
+                            Create a new course booking.
+                        </p>
+
+                    </div>
+
+                </div>
 
 
-                <p class="text-muted mb-0">
-                    All fields marked with * are required.
-                </p>
+
+                <a href="{{ route('bookings.index') }}" class="btn btn-light">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
 
 
             </div>
 
 
 
-            <div class="panel-body p-3 p-lg-4">
 
 
-                <form action="{{ route('courses.store') }}" method="POST">
+            @if ($errors->any())
 
-                    @csrf
+                <div class="alert alert-danger mt-4">
 
+                    <ul class="mb-0">
 
-                    <div class="row g-3">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
 
+                    </ul>
 
-                        {{-- Title --}}
-                        <div class="col-12 col-md-6">
+                </div>
 
-                            <label class="form-label">
-                                Course Title *
-                            </label>
-
-
-                            <input type="text"
-                                   name="title"
-                                   class="form-control @error('title') is-invalid @enderror"
-                                   value="{{ old('title') }}"
-                                   placeholder="e.g. Laravel Course"
-                                   required>
-
-
-                            @error('title')
-
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-
-                            @enderror
-
-
-                        </div>
-
-
-
-
-                        {{-- Instructor --}}
-                        <div class="col-12 col-md-6">
-
-
-                            <label class="form-label">
-                                Instructor *
-                            </label>
-
-
-                            <input type="text"
-                                   name="instructor"
-                                   class="form-control @error('instructor') is-invalid @enderror"
-                                   value="{{ old('instructor') }}"
-                                   placeholder="Instructor name"
-                                   required>
-
-
-                            @error('instructor')
-
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-
-                            @enderror
-
-
-                        </div>
+            @endif
 
 
 
 
 
-                        {{-- Category --}}
-                        <div class="col-12 col-md-6">
+            <section class="panel mt-4">
 
 
-                            <label class="form-label">
-                                Category *
-                            </label>
+                <div class="panel-body p-3 p-lg-4">
 
 
-                            <select name="category_id"
-                                    class="form-select @error('category_id') is-invalid @enderror"
-                                    required>
+                    <form action="{{ route('bookings.store') }}" method="POST">
+
+                        @csrf
 
 
-                                <option value="">
-                                    Choose category
-                                </option>
+                        <div class="row g-3">
 
 
 
-                                @foreach($categories as $category)
+                            <div class="col-12 col-md-6">
 
-                                    <option value="{{ $category->id }}"
-                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
 
-                                        {{ $category->name }}
+                                <label class="form-label">
+                                    Student *
+                                </label>
 
+
+                                <select name="student_id" class="form-select" required>
+
+
+                                    <option value="">
+                                        Choose Student
                                     </option>
 
-                                @endforeach
+
+                                    @foreach ($students as $student)
+                                        <option value="{{ $student->id }}"
+                                            {{ old('student_id') == $student->id ? 'selected' : '' }}>
+
+                                            {{ $student->name }}
+
+                                        </option>
+                                    @endforeach
 
 
-                            </select>
+                                </select>
 
-
-                            @error('category_id')
-
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-
-                            @enderror
-
-
-                        </div>
-
-
-
-
-
-                        {{-- Price --}}
-                        <div class="col-12 col-md-6">
-
-
-                            <label class="form-label">
-                                Price *
-                            </label>
-
-
-                            <div class="input-group">
-
-                                <span class="input-group-text">
-                                    $
-                                </span>
-
-
-                                <input type="number"
-                                       step="0.01"
-                                       min="0"
-                                       name="price"
-                                       class="form-control @error('price') is-invalid @enderror"
-                                       value="{{ old('price') }}"
-                                       required>
 
                             </div>
 
 
-                            @error('price')
 
-                                <div class="text-danger small">
-                                    {{ $message }}
-                                </div>
 
-                            @enderror
+
+                            <div class="col-12 col-md-6">
+
+
+                                <label class="form-label">
+                                    Course *
+                                </label>
+
+
+                                <select name="course_id" class="form-select" required>
+
+
+                                    <option value="">
+                                        Choose Course
+                                    </option>
+
+
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}"
+                                            {{ old('course_id') == $course->id ? 'selected' : '' }}>
+
+                                            {{ $course->title }}
+
+                                        </option>
+                                    @endforeach
+
+
+                                </select>
+
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="col-12 col-md-6">
+
+
+                                <label class="form-label">
+                                    Booking Time
+                                </label>
+
+
+                                <input type="time" name="booking_time" class="form-control"
+                                    value="{{ old('booking_time') }}">
+
+
+                            </div>
+
+
 
 
                         </div>
@@ -249,119 +184,43 @@
 
 
 
-
-                        {{-- Status --}}
-                        <div class="col-12 col-md-6">
+                        <div class="mt-4 d-flex justify-content-end gap-2">
 
 
-                            <label class="form-label">
-                                Status *
-                            </label>
+                            <a href="{{ route('bookings.index') }}" class="btn btn-light">
+
+                                Cancel
+
+                            </a>
 
 
-                            <select name="status"
-                                    class="form-select">
 
+                            <button class="btn btn-primary">
 
-                                <option value="1"
-                                    {{ old('status','1') == 1 ? 'selected' : '' }}>
+                                <i class="bi bi-check-circle"></i>
 
-                                    Active
+                                Save Booking
 
-                                </option>
-
-
-                                <option value="0"
-                                    {{ old('status') == '0' ? 'selected' : '' }}>
-
-                                    Inactive
-
-                                </option>
-
-
-                            </select>
+                            </button>
 
 
                         </div>
 
 
 
+                    </form>
 
 
-                        {{-- Description --}}
-                        <div class="col-12">
+                </div>
 
 
-                            <label class="form-label">
-                                Description *
-                            </label>
+            </section>
 
 
-                            <textarea name="description"
-                                      rows="5"
-                                      class="form-control @error('description') is-invalid @enderror"
-                                      placeholder="Course description..."
-                                      required>{{ old('description') }}</textarea>
+        </div>
 
 
-
-                            @error('description')
-
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-
-                            @enderror
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-
-
-                    <div class="mt-4 d-flex justify-content-end gap-2">
-
-
-                        <a href="{{ route('courses.index') }}"
-                           class="btn btn-light">
-
-                            Cancel
-
-                        </a>
-
-
-
-                        <button type="submit"
-                                class="btn btn-primary">
-
-                            <i class="bi bi-check-circle"></i>
-
-                            Save Course
-
-                        </button>
-
-
-                    </div>
-
-
-
-                </form>
-
-
-            </div>
-
-
-        </section>
-
-
-    </div>
-
-</main>
+    </main>
 
 
 @endsection
-```
