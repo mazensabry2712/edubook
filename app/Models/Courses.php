@@ -21,4 +21,15 @@ class Courses extends Model
     {
         return $this->belongsTo(Categories::class, 'category_id');
     }
+
+
+
+
+
+    public function images()
+{
+    return $this->morphMany(Image::class,'imageable');
+}
+
+
 }

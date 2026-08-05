@@ -8,8 +8,14 @@ class Image extends Model
 {
     protected $fillable = [
         'path',
-        'alt_text',
-        'course_id',
+        'name',
+        'type',
     ];
     protected $table = 'images';
+    
+      public function imageable()
+    {
+        return $this->morphTo();
+    }
 }
+

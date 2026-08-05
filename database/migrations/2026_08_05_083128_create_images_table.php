@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('path');
-            $table->string('alt_text')->nullable();
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('id')->on('courses')->restrictedOnDelete();
+            $table->string('name')->nullable();
+            $table->string('type')->nullable();
+            $table->morphs('imageable');
+               // imageable_id + imageable_type
             $table->timestamps();
         });
     }

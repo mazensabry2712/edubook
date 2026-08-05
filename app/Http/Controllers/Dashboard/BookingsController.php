@@ -15,7 +15,7 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        //
+
         $bookings = Booking::with(['student', 'course'])->get();
         return view('dashboard.boockings.index', compact('bookings'));
     }

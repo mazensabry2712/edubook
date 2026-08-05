@@ -21,4 +21,11 @@ class Students extends Model
     {
         return $this->hasMany(Booking::class, 'student_id');
     }
+
+
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

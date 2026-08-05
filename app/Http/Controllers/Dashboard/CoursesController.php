@@ -39,7 +39,18 @@ class CoursesController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
+
         Courses::create($request->all());
+
+        if ($request->hasFile('image')) {
+
+            $image = $request->file('image')->store('courses', 'public');
+            Courses::latest()->first()->images()->create([
+                'path' => $image,
+                'name' => $request->file('image')->getClientOriginalName(),
+                'type' => $request->file('image')->getClientMimeType(),
+            ]);
+        }
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
     }
