@@ -111,33 +111,34 @@
                 <div class="panel-body p-3 p-lg-4">
 
 
-                    <form action="{{ route('students.store') }}" method="POST">
-
-
+                    <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
-
-
                         <div class="row g-3">
-
-
-
-
-
                             {{-- Name --}}
                             <div class="col-12 col-md-6">
 
+
+
+                                <label class="form-label">
+                                    Profile Picture *
+                                </label>
+
+                                <input type="file" name="images[]" multiple
+                                    class="form-control @error('images') is-invalid @enderror" value="{{ old('images') }}">
+
+                                @error('images')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
 
                                 <label class="form-label">
                                     Full Name *
                                 </label>
 
-
                                 <input type="text" name="name"
                                     class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                     placeholder="Enter student name" required>
-
-
 
                                 @error('name')
                                     <div class="invalid-feedback">
@@ -145,24 +146,13 @@
                                     </div>
                                 @enderror
 
-
                             </div>
-
-
-
-
-
-
-
                             {{-- Email --}}
                             <div class="col-12 col-md-6">
-
 
                                 <label class="form-label">
                                     Email *
                                 </label>
-
-
                                 <input type="email" name="email"
                                     class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
                                     placeholder="example@email.com" required>

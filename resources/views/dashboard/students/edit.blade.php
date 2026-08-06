@@ -1,4 +1,3 @@
-
 @extends('dashboard.layouts.master')
 
 @section('title', 'Edit Student')
@@ -111,6 +110,22 @@
 
 
                             <div class="col-12 col-md-6">
+
+
+                                <label class="form-label">
+                                    Profile Picture *
+                                </label>
+
+                                <input type="file" name="images[]" multiple
+                                    class="form-control @error('images') is-invalid @enderror" value="{{ old('images') }}">
+
+                                @error('images')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+
 
                                 <label class="form-label">
                                     Name *

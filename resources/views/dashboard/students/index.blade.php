@@ -41,35 +41,37 @@
                     <div>
                         <h2 class="h5 mb-1 section-title">
                             <i class="bi bi-table"></i>
-                            <span>Courses Table</span>
+                            <span>Students Table</span>
                         </h2>
 
                         <p class="text-muted mb-0">
-                            List of all available courses.
+                            List of all available students.
                         </p>
                     </div>
 
-                    <input class="form-control form-control-sm table-search" type="search" placeholder="Search courses..."
-                        data-table-search="coursesTable" aria-label="Search courses">
+                    <input class="form-control form-control-sm table-search" type="search" placeholder="Search students..."
+                        data-table-search="studentsTable" aria-label="Search students">
                 </div>
 
                 <div class="table-responsive">
 
                     @if ($students->count())
 
-                        <table class="table align-middle mb-0" id="coursesTable" data-searchable-table>
+                        <table class="table align-middle mb-0" id="studentsTable" data-searchable-table>
 
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Actions</th>
-                                    <th>name</th>
+                                    <th>Profile</th>
+                                    <th class="text-first">Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
                                     <th>City</th>
                                     <th>State</th>
                                     <th>Country</th>
+                                    <th class="text-first">Actions</th>
+
                                 </tr>
                             </thead>
 
@@ -80,7 +82,48 @@
 
                                         <td>{{ $index + 1 }}</td>
 
+
                                         <td>
+                                            <img src="{{ $student->images->first()
+                                                ? asset('storage/' . $student->images->first()->path)
+                                                : asset('images/default-profile.png') }}"
+                                                class="rounded-circle" width="40" height="40"
+                                                alt="{{ $student->name }}">
+                                        </td>
+
+
+
+
+
+
+
+
+
+                                        <td class="fw-semibold">
+                                            {{ $student->name }}
+                                        </td>
+
+                                        <td>
+                                            {{ \Illuminate\Support\Str::limit($student->email, 60) }}
+                                        </td>
+
+                                        <td>
+                                            {{ $student->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $student->address }}
+                                        </td>
+                                        <td>
+                                            {{ $student->city }}
+                                        </td>
+                                        <td>
+                                            {{ $student->state }}
+                                        </td>
+                                        <td>
+                                            {{ $student->country }}
+                                        </td>
+
+                                        <td class="text-first">
 
                                             <a href="{{ route('students.show', $student->id) }}"
                                                 class="btn btn-info btn-sm">
@@ -106,34 +149,6 @@
                                             </form>
 
                                         </td>
-
-                                        <td class="fw-semibold">
-                                            {{ $student->name }}
-                                        </td>
-
-                                        <td>
-                                            {{ \Illuminate\Support\Str::limit($student->email, 60) }}
-                                        </td>
-
-                                        <td>
-                                            {{ $student->phone }}
-                                        </td>
-                                        <td>
-                                            {{ $student->address }}
-                                        </td>
-                                        <td>
-                                            {{ $student->city }}
-                                        </td>
-
-
-                                        <td>
-                                            {{ $student->state }}
-                                        </td>
-                                        <td>
-                                            {{ $student->country }}
-                                        </td>
-
-
                                     </tr>
                                 @endforeach
 

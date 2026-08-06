@@ -14,6 +14,7 @@ class StudentsController extends Controller
     public function index()
     {
         $students = Students::all();
+        // $students = Students::with('images')->get();
         return view('dashboard.students.index', compact('students'));
     }
 
@@ -30,17 +31,33 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email',
-            'phone' => 'nullable|string|max:20',
-            'address' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:100',
-            'state' => 'nullable|string|max:100',
-            'country' => 'nullable|string|max:100',
-        ]);
+      $validatedData = $request->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|unique:students,email',
+    'phone' => 'nullable|string|max:20',
+    'address' => 'nullable|string|max:255',
+    'city' => 'nullable|string|max:100',
+    'state' => 'nullable|string|max:100',
+    'country' => 'nullable|string|max:100',
 
-        Students::create($validatedData);
+    'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+]);
+
+        $student = Students::create($validatedData);
+
+        if ($request->hasFile('images')) {
+
+            foreach ($request->file('images') as $image) {
+
+                $path = $image->store('students', 'public');
+
+                $student->images()->create([
+                    'path' => $path,
+                    'name' => $image->getClientOriginalName(),
+                    'type' => $image->getClientMimeType(),
+                ]);
+            }
+        }
 
         return redirect()->route('students.index')->with('success', 'Student created successfully.');
     }
@@ -50,8 +67,8 @@ class StudentsController extends Controller
      */
     public function show(string $id)
     {
-        $student=Students::findOrFail($id);
-        return view('dashboard.students.show',compact('student'));
+        $student = Students::findOrFail($id);
+        return view('dashboard.students.show', compact('student'));
     }
 
     /**
@@ -59,8 +76,8 @@ class StudentsController extends Controller
      */
     public function edit(string $id)
     {
-        $student=Students::findOrFail($id);
-        return view('dashboard.students.edit',compact('student'));
+        $student = Students::findOrFail($id);
+        return view('dashboard.students.edit', compact('student'));
     }
 
     /**
