@@ -11,7 +11,6 @@
             <input class="form-control search-input" type="search" placeholder="Search users, orders, reports"
                 aria-label="Search">
         </form>
-
         <div class="navbar-actions ms-auto">
             <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme"
                 title="Switch color theme">

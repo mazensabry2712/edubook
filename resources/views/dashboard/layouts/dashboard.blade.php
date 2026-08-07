@@ -1,3 +1,6 @@
+@extends('dashboard.layouts.master')
+@section('title', 'Dashboard')
+@section('content')
 <main class="dashboard-content">
     <div class="container-fluid px-3 px-lg-4 py-4">
         <div class="page-heading">
@@ -252,3 +255,4 @@
         </section>
     </div>
 </main>
+@endsection
